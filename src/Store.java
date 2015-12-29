@@ -87,6 +87,7 @@ public class Store {
 	public void define() {
 
 		button = new Rectangle[shopWidth];
+		buttonId = 0;
 
 		for (int i = 0; i < button.length; i++)
 			button[i] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + (buttonSize * tileGroupHeight + cellSpace) * i, tileGroupWidth * buttonSize, tileGroupHeight * buttonSize);

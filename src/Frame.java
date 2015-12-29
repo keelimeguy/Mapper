@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 public class Frame extends JFrame {
-	public static String title = "Tower Defense";
+	public static String title = "Mapper";
 	public static Dimension size = new Dimension(1200, 700);
 	public Screen screen;
 	

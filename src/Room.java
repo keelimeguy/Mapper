@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 public class Room {
 	public int worldWidth = 0;
 	public int worldHeight = 0;
+	public int worldFrame = 0;
+	public int curFrame = 0;
 	public int roomWidth = 0, roomHeight = 0;
 	public int roomX = 0, roomY = 0;
 	public int xOff = 0, yOff = 0;
@@ -99,7 +101,10 @@ public class Room {
 			for (int y = 0; y < Screen.room.block.length; y++) {
 				for (int x = 0; x < Screen.room.block[0].length; x++) {
 					if (Screen.room.block[y][x].contains(Screen.mse)) {
-						Screen.room.block[y][x].groundId = Screen.store.heldId;
+						if (Screen.room.worldFrame > 0 && Screen.room.worldFrame < Screen.room.block[y][x].groundId.length)
+							Screen.room.block[y][x].groundId[Screen.room.worldFrame] = Screen.store.heldId;
+						else
+							Screen.room.block[y][x].groundId[0] = Screen.store.heldId;
 					}
 				}
 			}

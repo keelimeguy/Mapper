@@ -29,11 +29,11 @@ public class Screen extends JPanel implements Runnable {
 	public static int tileSizeGround = 26, tileSizeRes = 26;
 
 	public static boolean isFirst = true;
-	public static boolean isDebug = false;
+	public static int mode = 0;
 
 	public static Point mse = new Point(0, 0);
-	public JTextField inWidth = null, inHeight = null;
-	public JButton bWidth, bHeight;
+	public JTextField inWidth = null, inHeight = null, inFrame = null;
+	public JButton bWidth, bHeight, bFrame;
 
 	public static Room room;
 	public static Save save;
@@ -48,6 +48,8 @@ public class Screen extends JPanel implements Runnable {
 		bHeight = new JButton("Set Height");
 		inWidth = new JTextField(3);
 		bWidth = new JButton("Set Width");
+		inFrame = new JTextField(3);
+		bFrame = new JButton("Set Frame");
 
 		inWidth.setVisible(true);
 		inWidth.addActionListener(new ActionListener() {
@@ -82,6 +84,25 @@ public class Screen extends JPanel implements Runnable {
 		add(inHeight);
 		add(bHeight);
 
+		inFrame.setVisible(true);
+		inFrame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Screen.room.worldFrame = Integer.parseInt(inFrame.getText());
+				Screen.room.redefine(Screen.room.xOff, Screen.room.yOff, Screen.room.block);
+			}
+		});
+		bFrame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (Integer.parseInt(inFrame.getText()) >= 0 && Integer.parseInt(inFrame.getText()) < 10) {
+					Screen.room.worldFrame = Integer.parseInt(inFrame.getText());
+					Screen.room.redefine(Screen.room.xOff, Screen.room.yOff, Screen.room.block);
+				} else
+					inFrame.setText(Screen.room.worldFrame + "");
+			}
+		});
+		add(inFrame);
+		add(bFrame);
+
 		thread.start();
 
 	}
@@ -96,6 +117,7 @@ public class Screen extends JPanel implements Runnable {
 
 		inHeight.setText("" + room.worldHeight);
 		inWidth.setText("" + room.worldWidth);
+		inFrame.setText("" + room.worldFrame);
 
 		store.define();
 

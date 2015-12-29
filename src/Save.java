@@ -13,27 +13,31 @@ public class Save {
 			fw = new FileWriter(loadPath);
 			fw.write(Screen.tileBaseGround + " ");
 			fw.write(Screen.tileSizeGround + " ");
-			fw.write(Screen.store.shopSize + "\n");
+			fw.write(Screen.store.shopSize + " ");
 			fw.write(Screen.store.tileGroupWidth + " ");
-			fw.write(Screen.store.tileGroupHeight + " ");
+			fw.write(Screen.store.tileGroupHeight + "  " + System.getProperty("line.separator"));
 			fw.write(Screen.tileBaseRes + " ");
-			fw.write(Screen.tileSizeRes + "\n");
-			fw.write(Screen.room.blockSize + "\n");
-			fw.write(Screen.room.worldWidth + " " + Screen.room.worldHeight + "\n");
-			for (int y = 0; y < Screen.room.block.length; y++) {
-				fw.write("\n");
-				for (int x = 0; x < Screen.room.block[0].length; x++) {
-					fw.write((int) (Screen.room.block[y][x].groundId) + " ");
+			fw.write(Screen.tileSizeRes + "  " + System.getProperty("line.separator"));
+			fw.write(Screen.room.blockSize + "  " + System.getProperty("line.separator"));
+			fw.write(Screen.room.worldWidth + " " + Screen.room.worldHeight + "  " + System.getProperty("line.separator"));
+			for (int f = 0; f < 10; f++) {
+				for (int y = 0; y < Screen.room.block.length; y++) {
+					fw.write(System.getProperty("line.separator"));
+					for (int x = 0; x < Screen.room.block[0].length; x++) {
+						fw.write((int) (Screen.room.block[y][x].groundId[f]) + " ");
+					}
 				}
+				fw.write(System.getProperty("line.separator"));
 			}
-			fw.write("\n");
-			for (int y = 0; y < Screen.room.block.length; y++) {
-				fw.write("\n");
-				for (int x = 0; x < Screen.room.block[0].length; x++) {
-					fw.write((int) (Screen.room.block[y][x].ResId) + " ");
+			for (int f = 0; f < 10; f++) {
+				for (int y = 0; y < Screen.room.block.length; y++) {
+					fw.write(System.getProperty("line.separator"));
+					for (int x = 0; x < Screen.room.block[0].length; x++) {
+						fw.write((int) (Screen.room.block[y][x].ResId[f]) + " ");
+					}
 				}
+				fw.write(System.getProperty("line.separator"));
 			}
-			fw.write("\n");
 			fw.flush();
 			fw.close();
 			System.out.println("File written Succesfully");
@@ -59,15 +63,18 @@ public class Save {
 				Screen.tileSizeRes = loadScanner.nextInt();
 				Screen.room.blockSize = loadScanner.nextInt();
 				Screen.room.setDimensions(loadScanner.nextInt(), loadScanner.nextInt());
-				for (int y = 0; y < Screen.room.block.length; y++)
-					for (int x = 0; x < Screen.room.block[0].length; x++) {
-						Screen.room.block[y][x].groundId = loadScanner.nextInt();
-					}
-
-				for (int y = 0; y < Screen.room.block.length; y++)
-					for (int x = 0; x < Screen.room.block[0].length; x++) {
-						Screen.room.block[y][x].ResId = loadScanner.nextInt();
-					}
+				for (int f = 0; f < 10; f++) {
+					for (int y = 0; y < Screen.room.block.length; y++)
+						for (int x = 0; x < Screen.room.block[0].length; x++) {
+							Screen.room.block[y][x].groundId[f] = loadScanner.nextInt();
+						}
+				}
+				for (int f = 0; f < 10; f++) {
+					for (int y = 0; y < Screen.room.block.length; y++)
+						for (int x = 0; x < Screen.room.block[0].length; x++) {
+							Screen.room.block[y][x].ResId[f] = loadScanner.nextInt();
+						}
+				}
 			}
 
 			loadScanner.close();
