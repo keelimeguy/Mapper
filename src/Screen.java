@@ -4,8 +4,6 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.image.CropImageFilter;
@@ -24,6 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 public class Screen extends JPanel implements Runnable {
+
+	private static final long serialVersionUID = 1L;
 	public Thread thread = new Thread(this);
 	public static Frame frame;
 
@@ -52,7 +52,7 @@ public class Screen extends JPanel implements Runnable {
 	public static Store store;
 
 	public Screen(Frame frame) {
-		this.frame = frame;
+		Screen.frame = frame;
 		frame.addMouseListener(new KeyHandler());
 		frame.addMouseMotionListener(new KeyHandler());
 
@@ -100,7 +100,7 @@ public class Screen extends JPanel implements Runnable {
 		add(inHeight);
 		add(bHeight);
 
-		DefaultListModel frameName = new DefaultListModel();
+		DefaultListModel<String> frameName = new DefaultListModel<String>();
 
 		frameName.addElement("9");
 		frameName.addElement("8");
@@ -113,7 +113,7 @@ public class Screen extends JPanel implements Runnable {
 		frameName.addElement("1");
 		frameName.addElement("0");
 
-		final JList frameList = new JList(frameName);
+		final JList<String> frameList = new JList<String>(frameName);
 		frameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		frameList.setSelectedIndex(3);
 		frameList.setVisibleRowCount(1);
@@ -184,14 +184,14 @@ public class Screen extends JPanel implements Runnable {
 
 		add(bCollide);
 
-		DefaultListModel viewName = new DefaultListModel();
+		DefaultListModel<String> viewName = new DefaultListModel<String>();
 
 		viewName.addElement("Base");
 		viewName.addElement("Over");
 		viewName.addElement("Top");
 		viewName.addElement("Collide");
 
-		final JList viewList = new JList(viewName);
+		final JList<String> viewList = new JList<String>(viewName);
 		viewList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		viewList.setSelectedIndex(0);
 		viewList.setVisibleRowCount(1);
@@ -213,11 +213,13 @@ public class Screen extends JPanel implements Runnable {
 		thread.start();
 	}
 
+	@SuppressWarnings("unused")
 	private void setFrame(int val) {
 		Screen.room.worldFrame = val;
 		Screen.room.redefine(Screen.room.xOff, Screen.room.yOff, Screen.room.block, Screen.room.over, Screen.room.top, Screen.room.collide, Screen.room.showTile, Screen.room.curView);
 	}
 
+	@SuppressWarnings("unused")
 	private void setView(int val) {
 		Screen.room.curView = val;
 		Screen.room.redefine(Screen.room.xOff, Screen.room.yOff, Screen.room.block, Screen.room.over, Screen.room.top, Screen.room.collide, Screen.room.showTile, Screen.room.curView);
@@ -242,7 +244,7 @@ public class Screen extends JPanel implements Runnable {
 	public void defineTile() {
 		for (int i = 0; i < tilesetGround.length; i++) {
 			tilesetGround[i] = new ImageIcon("res/" + tileBaseGround + ".png").getImage();
-			tilesetGround[i] = createImage(new FilteredImageSource(tilesetGround[i].getSource(), new CropImageFilter(tileSizeGround * (i % store.tileGroupWidth), tileSizeGround * Math.floorDiv(i, store.tileGroupWidth), tileSizeGround, tileSizeGround)));
+			tilesetGround[i] = createImage(new FilteredImageSource(tilesetGround[i].getSource(), new CropImageFilter(tileSizeGround * (i % Store.tileGroupWidth), tileSizeGround * Math.floorDiv(i, Store.tileGroupWidth), tileSizeGround, tileSizeGround)));
 			tilesetGround[i] = createImage(new FilteredImageSource(tilesetGround[i].getSource(), new RGBImageFilter() {
 
 				// the color we are looking for... Alpha bits are set to opaque
@@ -272,8 +274,8 @@ public class Screen extends JPanel implements Runnable {
 	}
 
 	public static void resizeTileset() {
-		tilesetGround = new Image[store.shopSize * store.tileGroupWidth * store.tileGroupHeight];
-		lastId = Screen.store.shopSize * Screen.store.tileGroupWidth * Screen.store.tileGroupHeight - 1;
+		tilesetGround = new Image[Store.shopSize * Store.tileGroupWidth * Store.tileGroupHeight];
+		lastId = Store.shopSize * Store.tileGroupWidth * Store.tileGroupHeight - 1;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -306,7 +308,7 @@ public class Screen extends JPanel implements Runnable {
 
 		g.setColor(new Color(200, 200, 200));
 
-		g.fillRect(store.scroll[2].x + store.scroll[2].width / 2 - 1, myHeight / 2 - store.shopWidth * (store.buttonSize * store.tileGroupHeight + store.cellSpace) / 2 + store.buttonSize * store.shopWidth, 3, store.buttonSize * 6 + store.cellSpace);
+		g.fillRect(store.scroll[2].x + store.scroll[2].width / 2 - 1, myHeight / 2 - Store.shopWidth * (Store.buttonSize * Store.tileGroupHeight + Store.cellSpace) / 2 + Store.buttonSize * Store.shopWidth, 3, Store.buttonSize * 6 + Store.cellSpace);
 
 		store.draw(g);
 
@@ -341,7 +343,7 @@ public class Screen extends JPanel implements Runnable {
 			// Keep track of and display the game's ups and fps every second
 			if (System.currentTimeMillis() - timer >= 1000) {
 				timer += 1000;
-				frame.setTitle(frame.title + " | ups: " + updates + " | fps: " + frames);
+				frame.setTitle(Frame.title + " | ups: " + updates + " | fps: " + frames);
 				updates = 0;
 				frames = 0;
 			}

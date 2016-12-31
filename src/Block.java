@@ -3,6 +3,9 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 public class Block extends Rectangle {
+
+	private static final long serialVersionUID = 1L;
+
 	public int groundId;
 
 	public int shotMob = -1;
@@ -14,6 +17,7 @@ public class Block extends Rectangle {
 		this.groundId = groundId;
 		tileset = Screen.tilesetGround;
 	}
+
 	public Block(int x, int y, int width, int height, int groundId, Image[] tileset) {
 		setBounds(x, y, width, height);
 		this.groundId = groundId;
@@ -21,10 +25,9 @@ public class Block extends Rectangle {
 	}
 
 	public void draw(Graphics g) {
-		
-		if (groundId < tileset.length) 
-			g.drawImage(tileset[groundId], x, y, width, height, null);
-			
+
+		if (groundId < tileset.length) g.drawImage(tileset[groundId], x, y, width, height, null);
+
 	}
 
 	public void physics() {

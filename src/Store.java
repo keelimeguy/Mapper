@@ -184,23 +184,23 @@ public class Store {
 			buttonId = 1;
 			for (int i = 0; i < button.length; i++)
 				button[i] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - colShopWidth * (buttonSize * colGroupHeight + cellSpace) / 2 + (buttonSize * colGroupHeight + cellSpace) * i, colGroupWidth * buttonSize, colGroupHeight * buttonSize);
-			res[0] = new Rectangle(largeCellSpace + colGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Screen.store.shopWidth - 1) - cellSpace * 4, buttonSize, buttonSize);
+			res[0] = new Rectangle(largeCellSpace + colGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Store.shopWidth - 1) - cellSpace * 4, buttonSize, buttonSize);
 			for (int i = 1; i < res.length; i++)
-				res[i] = new Rectangle(largeCellSpace + colGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Screen.store.shopWidth + 5 + i) + cellSpace * 5, buttonSize, buttonSize);
+				res[i] = new Rectangle(largeCellSpace + colGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Store.shopWidth + 5 + i) + cellSpace * 5, buttonSize, buttonSize);
 			scroll[0] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - colShopWidth * (buttonSize * colGroupHeight + cellSpace) / 2 - buttonSize * colGroupHeight - cellSpace, colGroupWidth * buttonSize, colGroupHeight * buttonSize);
 			scroll[1] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - colShopWidth * (buttonSize * colGroupHeight + cellSpace) / 2 + (buttonSize * colGroupHeight + cellSpace) * colShopWidth, colGroupWidth * buttonSize, colGroupHeight * buttonSize);
-			scroll[2] = new Rectangle(largeCellSpace + colGroupWidth * buttonSize + cellSpace, (int) ((Screen.room.maxSize - Screen.room.blockSize) * (buttonSize * 6.0 + cellSpace) / (Screen.room.maxSize - Screen.room.minSize) + (Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Screen.store.shopWidth - buttonSize / 2)), buttonSize, buttonSize);
+			scroll[2] = new Rectangle(largeCellSpace + colGroupWidth * buttonSize + cellSpace, (int) ((Screen.room.maxSize - Screen.room.blockSize) * (buttonSize * 6.0 + cellSpace) / (Screen.room.maxSize - Screen.room.minSize) + (Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Store.shopWidth - buttonSize / 2)), buttonSize, buttonSize);
 		} else {
 			button = new Rectangle[shopWidth];
 			buttonId = 0;
 			for (int i = 0; i < button.length; i++)
 				button[i] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + (buttonSize * tileGroupHeight + cellSpace) * i, tileGroupWidth * buttonSize, tileGroupHeight * buttonSize);
-			res[0] = new Rectangle(largeCellSpace + tileGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Screen.store.shopWidth - 1) - cellSpace * 4, buttonSize, buttonSize);
+			res[0] = new Rectangle(largeCellSpace + tileGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Store.shopWidth - 1) - cellSpace * 4, buttonSize, buttonSize);
 			for (int i = 1; i < res.length; i++)
-				res[i] = new Rectangle(largeCellSpace + tileGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Screen.store.shopWidth + 5 + i) + cellSpace * 5, buttonSize, buttonSize);
+				res[i] = new Rectangle(largeCellSpace + tileGroupWidth * buttonSize + cellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Store.shopWidth + 5 + i) + cellSpace * 5, buttonSize, buttonSize);
 			scroll[0] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 - buttonSize * tileGroupHeight - cellSpace, tileGroupWidth * buttonSize, tileGroupHeight * buttonSize);
 			scroll[1] = new Rectangle(largeCellSpace, Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + (buttonSize * tileGroupHeight + cellSpace) * shopWidth, tileGroupWidth * buttonSize, tileGroupHeight * buttonSize);
-			scroll[2] = new Rectangle(largeCellSpace + tileGroupWidth * buttonSize + cellSpace, (int) ((Screen.room.maxSize - Screen.room.blockSize) * (buttonSize * 6.0 + cellSpace) / (Screen.room.maxSize - Screen.room.minSize) + (Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Screen.store.shopWidth - buttonSize / 2)), buttonSize, buttonSize);
+			scroll[2] = new Rectangle(largeCellSpace + tileGroupWidth * buttonSize + cellSpace, (int) ((Screen.room.maxSize - Screen.room.blockSize) * (buttonSize * 6.0 + cellSpace) / (Screen.room.maxSize - Screen.room.minSize) + (Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Store.shopWidth - buttonSize / 2)), buttonSize, buttonSize);
 		}
 	}
 
@@ -208,9 +208,9 @@ public class Store {
 		if (!holdsItem && scrollSelected) {
 			int dy = Screen.mse.y - mseOld.y;
 
-			if (scroll[2].y + dy >= Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Screen.store.shopWidth - buttonSize / 2 && scroll[2].y + dy <= Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Screen.store.shopWidth + 6) - buttonSize / 2 + cellSpace) scroll[2].y += dy;
+			if (scroll[2].y + dy >= Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Store.shopWidth - buttonSize / 2 && scroll[2].y + dy <= Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * (Store.shopWidth + 6) - buttonSize / 2 + cellSpace) scroll[2].y += dy;
 			int oldBlock = Screen.room.blockSize;
-			Screen.room.blockSize = Screen.room.maxSize - (int) ((scroll[2].y - (Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Screen.store.shopWidth - buttonSize / 2)) / (buttonSize * 6.0 + cellSpace) * (Screen.room.maxSize - Screen.room.minSize));
+			Screen.room.blockSize = Screen.room.maxSize - (int) ((scroll[2].y - (Screen.myHeight / 2 - shopWidth * (buttonSize * tileGroupHeight + cellSpace) / 2 + buttonSize * Store.shopWidth - buttonSize / 2)) / (buttonSize * 6.0 + cellSpace) * (Screen.room.maxSize - Screen.room.minSize));
 			Screen.room.redefine(Screen.room.xOff * Screen.room.blockSize / oldBlock, Screen.room.yOff * Screen.room.blockSize / oldBlock, Screen.room.block, Screen.room.over, Screen.room.top, Screen.room.collide, Screen.room.showTile, Screen.room.curView);
 
 		}

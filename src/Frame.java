@@ -4,10 +4,12 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 
 public class Frame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 	public static String title = "Mapper";
 	public static Dimension size = new Dimension(1200, 700);
 	public Screen screen;
-	
+
 	public Frame() {
 		setTitle(title);
 		setSize(size);
@@ -17,7 +19,7 @@ public class Frame extends JFrame {
 
 		init();
 	}
-	
+
 	public void init() {
 		setLayout(new GridLayout(1, 1, 0, 0));
 
@@ -28,6 +30,7 @@ public class Frame extends JFrame {
 	}
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		Frame frame = new Frame();
 	}
 }

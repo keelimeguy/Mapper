@@ -40,7 +40,7 @@ public class Room {
 		over = new AnimatedBlock[worldHeight][worldWidth];
 		top = new AnimatedBlock[worldHeight][worldWidth];
 		collide = new Block[worldHeight][worldWidth];
-		roomX = Screen.store.buttonSize * (Screen.store.tileGroupWidth + 1) + Screen.store.largeCellSpace + Screen.store.cellSpace * 2;
+		roomX = Store.buttonSize * (Store.tileGroupWidth + 1) + Store.largeCellSpace + Store.cellSpace * 2;
 		roomY = 0;
 		roomHeight = Screen.myHeight - roomY;
 		roomWidth = Screen.myWidth - roomX;
@@ -48,7 +48,7 @@ public class Room {
 
 		for (int y = 0; y < block.length; y++)
 			for (int x = 0; x < block[0].length; x++)
-				block[y][x] = new Block((roomWidth / 2) - ((worldWidth * blockSize) / 2) + (x * blockSize) + roomX + xOffset, roomHeight / 2 - (worldHeight * blockSize) / 2 + y * blockSize + roomY + yOffset, blockSize, blockSize, (x % 2) + (y % 2) * Screen.store.tileGroupWidth);
+				block[y][x] = new Block((roomWidth / 2) - ((worldWidth * blockSize) / 2) + (x * blockSize) + roomX + xOffset, roomHeight / 2 - (worldHeight * blockSize) / 2 + y * blockSize + roomY + yOffset, blockSize, blockSize, (x % 2) + (y % 2) * Store.tileGroupWidth);
 		for (int y = 0; y < over.length; y++)
 			for (int x = 0; x < over[0].length; x++)
 				over[y][x] = new AnimatedBlock((roomWidth / 2) - ((worldWidth * blockSize) / 2) + (x * blockSize) + roomX + xOffset, roomHeight / 2 - (worldHeight * blockSize) / 2 + y * blockSize + roomY + yOffset, blockSize, blockSize, new int[] { Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId, Screen.lastId });
@@ -68,7 +68,7 @@ public class Room {
 		over = new AnimatedBlock[worldHeight][worldWidth];
 		top = new AnimatedBlock[worldHeight][worldWidth];
 		collide = new Block[worldHeight][worldWidth];
-		roomX = Screen.store.buttonSize * (Screen.store.tileGroupWidth + 1) + Screen.store.largeCellSpace + Screen.store.cellSpace * 2;
+		roomX = Store.buttonSize * (Store.tileGroupWidth + 1) + Store.largeCellSpace + Store.cellSpace * 2;
 		roomY = 0;
 		roomHeight = Screen.myHeight - roomY;
 		roomWidth = Screen.myWidth - roomX;
@@ -81,7 +81,7 @@ public class Room {
 				if (y < blocks.length && x < blocks[0].length)
 					block[y][x] = new Block((roomWidth / 2) - ((worldWidth * blockSize) / 2) + (x * blockSize) + roomX + xOffset, roomHeight / 2 - (worldHeight * blockSize) / 2 + y * blockSize + roomY + yOffset, blockSize, blockSize, blocks[y][x].groundId);
 				else
-					block[y][x] = new Block((roomWidth / 2) - ((worldWidth * blockSize) / 2) + (x * blockSize) + roomX + xOffset, roomHeight / 2 - (worldHeight * blockSize) / 2 + y * blockSize + roomY + yOffset, blockSize, blockSize, (x % 2) + (y % 2) * Screen.store.tileGroupWidth);
+					block[y][x] = new Block((roomWidth / 2) - ((worldWidth * blockSize) / 2) + (x * blockSize) + roomX + xOffset, roomHeight / 2 - (worldHeight * blockSize) / 2 + y * blockSize + roomY + yOffset, blockSize, blockSize, (x % 2) + (y % 2) * Store.tileGroupWidth);
 		for (int y = 0; y < over.length; y++)
 			for (int x = 0; x < over[0].length; x++)
 				if (y < overs.length && x < overs[0].length)

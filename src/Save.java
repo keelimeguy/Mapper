@@ -13,9 +13,9 @@ public class Save {
 			fw = new FileWriter(loadPath);
 			fw.write(Screen.tileBaseGround + " ");
 			fw.write(Screen.tileSizeGround + " ");
-			fw.write(Screen.store.shopSize + " ");
-			fw.write(Screen.store.tileGroupWidth + " ");
-			fw.write(Screen.store.tileGroupHeight + "  " + System.getProperty("line.separator"));
+			fw.write(Store.shopSize + " ");
+			fw.write(Store.tileGroupWidth + " ");
+			fw.write(Store.tileGroupHeight + "  " + System.getProperty("line.separator"));
 			fw.write(Screen.tileBaseRes + " ");
 			fw.write(Screen.tileSizeRes + "  " + System.getProperty("line.separator"));
 			fw.write(Screen.room.blockSize + "  " + System.getProperty("line.separator"));
@@ -71,11 +71,11 @@ public class Save {
 			if (loadScanner.hasNext()) {
 				Screen.tileBaseGround = loadScanner.next();
 				Screen.tileSizeGround = loadScanner.nextInt();
-				Screen.store.shopSize = loadScanner.nextInt();
-				Screen.store.tileGroupWidth = loadScanner.nextInt();
-				Screen.store.tileGroupHeight = loadScanner.nextInt();
-				if (Screen.store.shopSize * Screen.store.tileGroupWidth * Screen.store.tileGroupHeight > Screen.tilesetGround.length) Screen.resizeTileset();
-				Screen.store.shopWidth = 12 / Screen.store.tileGroupHeight;
+				Store.shopSize = loadScanner.nextInt();
+				Store.tileGroupWidth = loadScanner.nextInt();
+				Store.tileGroupHeight = loadScanner.nextInt();
+				if (Store.shopSize * Store.tileGroupWidth * Store.tileGroupHeight > Screen.tilesetGround.length) Screen.resizeTileset();
+				Store.shopWidth = 12 / Store.tileGroupHeight;
 				Screen.tileBaseRes = loadScanner.next();
 				Screen.tileSizeRes = loadScanner.nextInt();
 				Screen.room.blockSize = loadScanner.nextInt();
